@@ -1,0 +1,8 @@
+.detailCard{
+    margin-top: .5rem;
+    height: 8rem;
+    background: bisque;
+}
+.detailCard_title{
+    size: 5px;
+}

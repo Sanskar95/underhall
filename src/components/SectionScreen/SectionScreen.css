@@ -1,0 +1,19 @@
+.sectionScreen {
+    background-color: #f2f2f2;
+    height: 100vh;
+}
+
+.sectionScreen_headerImage{
+}
+
+.sectionScreen_content{
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.sectionScreen_addSectionButton{
+    position: relative;
+    left: 2rem;
+    top: 2rem;
+}

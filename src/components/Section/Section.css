@@ -1,0 +1,13 @@
+.section{
+    height: 15rem;
+    width: 15rem;
+    border: 1px solid black;
+    margin: 2rem;
+    justify-content: center;
+    background-color: #ffffaa;
+
+}
+
+.section_text{
+    text-align: center;
+}
