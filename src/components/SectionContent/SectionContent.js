@@ -16,53 +16,12 @@ import TextField from '@material-ui/core/TextField/TextField'
 import DialogActions from '@material-ui/core/DialogActions/DialogActions'
 import Dialog from '@material-ui/core/Dialog/Dialog'
 import { db } from '../../firebase'
+import LinkEntry from "./LinkEntry";
+import PlayCircleFilledIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import './SectionContent.css'
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`nav-tabpanel-${index}`}
-            aria-labelledby={`nav-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    )
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-}
-function LinkTab(props) {
-    return (
-        <Tab
-            component="a"
-            onClick={(event) => {
-                event.preventDefault()
-            }}
-            {...props}
-        />
-    )
-}
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
-}))
 
 export default function SectionContent(props) {
-    const classes = useStyles()
     const [value, setValue] = React.useState(0)
     const [modalOpen, setModalOpen] = React.useState(false)
     const [urlDetails, setUrlDetails] = React.useState({})
@@ -110,41 +69,25 @@ export default function SectionContent(props) {
     }
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static" style={{ backgroundColor: '#013220' }}>
-                <Tabs
-                    variant="fullWidth"
-                    value={value}
-                    onChange={handleChangeOfTabs}
-                    aria-label="nav tabs example"
-                >
-                    <LinkTab
-                        label={
-                            <p style={{ fontSize: '.8rem', fontWeight: 'bold' }}>
-                                publications
-                            </p>
-                        }
-                    />
-                    <LinkTab
-                        label={
-                            <p style={{ fontSize: '.8rem', fontWeight: 'bold' }}>articles</p>
-                        }
-                    />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
+            <div className="body">
                 <Button
+                    style={{color: 'white'}}
                     variant="outlined"
-                    color="default"
+
                     startIcon={<AddIcon />}
                     onClick={handleAddLinkClick}
                 >
-                    Create new link
+                    Create new
                 </Button>
+                <div className="body__info">
+                    <div className="body__infoText">
+                        <h2>{props.match.params.sectionName.toUpperCase()}</h2>
+                    </div>
+                </div>
 
-                <div className="sectionContent_tab">
+                <div className="body__songs">
                     {section?.contents?.map((content) => {
-                        return <DetailCard title={content.title} url={content.url} />
+                        return <LinkEntry title={content.title} url={content.url} />
                     })}
                 </div>
                 <Dialog open={modalOpen} maxWidth="xl">
@@ -179,10 +122,7 @@ export default function SectionContent(props) {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                Coming soon....
-            </TabPanel>
-        </div>
+            </div>
+
     )
 }

@@ -51,6 +51,7 @@ const  SectionScreen=()=> {
 
                 <Button
                     className="sectionScreen_addSectionButton"
+                    style={{color: 'white'}}
                     variant="outlined"
                     color="default"
                     startIcon={<AddIcon />}
